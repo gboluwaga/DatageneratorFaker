@@ -75,15 +75,6 @@ def main(s3_client):
             if object_key.endswith('.pdf'):
                 executor.submit(process_pdf, object_key, source_bucket, destination_bucket, destination_folder)
     
-    # Create a DataFrame from the extracted text list
-    df = pd.DataFrame(all_extracted_text)
-
-    # Convert the DataFrame to a JSON file
-    json_data = df.to_json(orient='records')
-
-    # Save JSON to destination bucket folder
-    json_key = f"{destination_folder}/extracted_text.json"
-    s3.put_object(Bucket=destination_bucket, Key=json_key, Body=json_data)
 
 if __name__ == '__main__':
     main(s3)
