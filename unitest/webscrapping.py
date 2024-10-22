@@ -57,11 +57,6 @@ fetch_game_data_task = PythonOperator(
     dag=dag,
 )
 
-save_to_postgres_task = PythonOperator(
-    task_id='save_to_postgres_task',
-    python_callable=save_to_postgres,
-    provide_context=True,
-    dag=dag,
-)
 
-fetch_game_data_task >> save_to_postgres_task
+
+fetch_game_data_task 
